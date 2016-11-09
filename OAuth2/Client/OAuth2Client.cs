@@ -80,8 +80,7 @@ namespace OAuth2.Client
         {
             CheckErrorAndSetState(parameters);
             QueryAccessToken(parameters);
-            var user = GetUserInfo();
-            return user;
+            return GetUserInfo();
         }
 
         /// <summary>
