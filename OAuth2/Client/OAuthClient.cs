@@ -5,7 +5,7 @@ using OAuth2.Infrastructure;
 using OAuth2.Models;
 using RestSharp;
 using RestSharp.Authenticators;
-using RestSharp.Contrib;
+//using RestSharp.Contrib;
 
 namespace OAuth2.Client
 {
@@ -127,7 +127,7 @@ namespace OAuth2.Client
             var request = _factory.CreateRequest(RequestTokenServiceEndpoint, Method.POST);
             
             var response = client.ExecuteAndVerify(request);
-            var collection = HttpUtility.ParseQueryString(response.Content);
+            var collection = System.Web.HttpUtility.ParseQueryString(response.Content);
 
             AccessToken = collection.GetOrThrowUnexpectedResponse(OAuthTokenKey);
             AccessTokenSecret = collection.GetOrThrowUnexpectedResponse(OAuthTokenSecretKey);
@@ -165,7 +165,7 @@ namespace OAuth2.Client
             var request = _factory.CreateRequest(AccessTokenServiceEndpoint, Method.POST);
 
             var content = client.ExecuteAndVerify(request).Content;
-            var collection = HttpUtility.ParseQueryString(content);
+            var collection = System.Web.HttpUtility.ParseQueryString(content);
             
             AccessToken = collection.GetOrThrowUnexpectedResponse(OAuthTokenKey);
             AccessTokenSecret = collection.GetOrThrowUnexpectedResponse(OAuthTokenSecretKey);

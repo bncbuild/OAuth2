@@ -7,8 +7,7 @@ namespace OAuth2.Infrastructure
     {
         public static IRestClient CreateClient(this IRequestFactory factory, Endpoint endpoint)
         {
-            var client = factory.CreateClient();
-            client.BaseUrl = endpoint.BaseUri;
+            var client = factory.CreateClient(endpoint.BaseUri);
             return client;
         }
 

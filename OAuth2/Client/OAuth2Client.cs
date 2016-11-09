@@ -5,7 +5,8 @@ using OAuth2.Configuration;
 using OAuth2.Infrastructure;
 using OAuth2.Models;
 using RestSharp;
-using RestSharp.Contrib;
+using RestSharp.Authenticators;
+//Susing RestSharp.Contrib;
 
 namespace OAuth2.Client
 {
@@ -79,7 +80,8 @@ namespace OAuth2.Client
         {
             CheckErrorAndSetState(parameters);
             QueryAccessToken(parameters);
-            return GetUserInfo();
+            var user = GetUserInfo();
+            return user;
         }
 
         /// <summary>
@@ -164,7 +166,7 @@ namespace OAuth2.Client
             catch (JsonReaderException)
             {
                 // or it can be in "query string" format (param1=val1&param2=val2)
-                var collection = HttpUtility.ParseQueryString(content);
+                var collection = System.Web.HttpUtility.ParseQueryString(content);
                 return collection.GetOrThrowUnexpectedResponse(AccessTokenKey);
             }
         }
