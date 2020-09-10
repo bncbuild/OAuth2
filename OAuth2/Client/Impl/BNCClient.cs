@@ -14,9 +14,7 @@ namespace OAuth2.Client.Impl
     public class BNCClient : OAuth2Client
     {
 
-       // private const string AUTH_SERVER = "https://secure.berkerynoyes.com";//"http://bncauth-dev.herokuapp.com";
         private static string mAUTH_SERVER = null;
-        private static string mX_AUTH_KEY = null;
 
         private static string AUTH_SERVER
         {
@@ -29,7 +27,7 @@ namespace OAuth2.Client.Impl
                     if (string.IsNullOrWhiteSpace(mAUTH_SERVER))
                         mAUTH_SERVER = System.Configuration.ConfigurationManager.AppSettings["AUTH_SERVER"];
 #else
-               mAUTH_SERVER = System.Configuration.ConfigurationManager.AppSettings["AUTH_SERVER"];
+                    mAUTH_SERVER = System.Configuration.ConfigurationManager.AppSettings["AUTH_SERVER"];
 #endif
                 }
 
