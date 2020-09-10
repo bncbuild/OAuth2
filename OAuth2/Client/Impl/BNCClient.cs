@@ -26,6 +26,8 @@ namespace OAuth2.Client.Impl
                 {
 #if TESTSECURE
                     mAUTH_SERVER = System.Configuration.ConfigurationManager.AppSettings["AUTH_SERVER_test"];
+                    if (string.IsNullOrWhiteSpace(mAUTH_SERVER))
+                        mAUTH_SERVER = System.Configuration.ConfigurationManager.AppSettings["AUTH_SERVER"];
 #else
                mAUTH_SERVER = System.Configuration.ConfigurationManager.AppSettings["AUTH_SERVER"];
 #endif
