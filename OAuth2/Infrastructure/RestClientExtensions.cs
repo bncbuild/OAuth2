@@ -10,9 +10,9 @@ namespace OAuth2.Infrastructure
         {
             // add header
             //request.AddHeader("X-Authorization-Key", "5ed2149a-e2ba-4a40-9df0-94057d1942fb");
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             var response = client.Execute(request);
-            if (response.StatusCode != HttpStatusCode.OK ||
-                response.Content.IsEmpty())
+            if (response.StatusCode != HttpStatusCode.OK || response.Content.IsEmpty())
             {
                 throw new UnexpectedResponseException(response);
             }
